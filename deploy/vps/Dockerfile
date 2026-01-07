@@ -26,7 +26,7 @@ ENV NEXT_PUBLIC_APP_URL=$NEXT_PUBLIC_APP_URL
 ENV NEXT_PUBLIC_ALLOW_REGISTRATION=$NEXT_PUBLIC_ALLOW_REGISTRATION
 
 # Install dependencies and build
-RUN pnpm install
+RUN CI=true pnpm install
 RUN pnpm run build
 
 # 2. Production image
