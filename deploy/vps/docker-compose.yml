@@ -5,12 +5,15 @@ services:
     build:
       context: ../..
       dockerfile: deploy/vps/Dockerfile
+      args:
+        - NEXT_PUBLIC_APP_URL=${NEXT_PUBLIC_APP_URL:-http://localhost:3000}
+        - NEXT_PUBLIC_ALLOW_REGISTRATION=${ALLOW_REGISTRATION:-true}
     container_name: senlo-app
     restart: always
     ports:
       - "3000:3000"
     environment:
-      - DATABASE_URL=postgresql://senlo_user:senlo_password@db:5432/senlo_db
+      - DATABASE_URL=${DATABASE_URL}
       - AUTH_SECRET=${AUTH_SECRET}
       - NEXT_PUBLIC_APP_URL=${NEXT_PUBLIC_APP_URL:-http://localhost:3000}
       - ALLOW_REGISTRATION=${ALLOW_REGISTRATION:-true}
