@@ -1,83 +1,86 @@
-# VPS Deployment with Docker Compose
+# Deploying Senlo on VPS (Docker Compose)
 
-This directory contains everything you need to deploy Senlo on a Virtual Private Server (VPS) using Docker.
+This guide provides step-by-step instructions to deploy Senlo on a virtual private server using Docker and Docker Compose.
 
 ## Prerequisites
 
-- A VPS running Ubuntu 22.04 or 24.04 (recommended).
-- Docker and Docker Compose installed.
-- Minimum 2GB RAM (4GB recommended for build processes).
-- Port 3000 open in your firewall.
+Before you begin, ensure your VPS has the following installed:
 
-## Initial Server Setup
-
-If you are starting with a fresh server, follow these steps to prepare the environment:
-
-```bash
-# Update system
-apt update && apt upgrade -y
-
-# Install Docker
-curl -fsSL https://get.docker.com -o get-docker.sh
-sh get-docker.sh
-
-# Setup 2GB Swap (important for builds)
-fallocate -l 2G /swapfile
-chmod 600 /swapfile
-mkswap /swapfile
-swapon /swapfile
-echo '/swapfile none swap sw 0 0' | tee -a /etc/fstab
-
-# Configure Firewall
-ufw allow OpenSSH
-ufw allow 80/tcp
-ufw allow 443/tcp
-ufw allow 3000/tcp
-ufw --force enable
-```
+1.  **Docker & Docker Compose**: 
+    ```bash
+    curl -fsSL https://get.docker.com -o get-docker.sh && sh get-docker.sh
+    ```
+2.  **Node.js & pnpm** (on the host machine to prepare dependencies):
+    ```bash
+    curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
+    apt-get install -y nodejs
+    corepack enable
+    corepack prepare pnpm@latest --activate
+    ```
 
 ## Deployment Steps
 
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/your-username/senlo.git
-   cd senlo/deploy/vps
-   ```
+### 1. Clone the repository
+```bash
+git clone https://github.com/your-username/senlo.git
+cd senlo
+```
 
-2. **Configure Environment Variables**:
-   Copy the example file and fill in your secrets:
-   ```bash
-   cp env.example .env
-   # Edit .env and set AUTH_SECRET, INITIAL_USERS, etc.
-   nano .env
-   ```
+### 2. Prepare dependencies
+It's recommended to run install on the host to ensure `pnpm-lock.yaml` is up to date:
+```bash
+pnpm install
+```
 
-3. **Start the Application**:
-   ```bash
-   docker compose up -d --build
-   ```
+### 3. Configure environment variables
+Go to the deployment directory and create a `.env` file:
+```bash
+cd deploy/vps
+cp env.example .env
+```
 
-## Environment Variables
+Edit the `.env` file and set the following required values:
+- `AUTH_SECRET`: Generate one with `openssl rand -base64 32`.
+- `AUTH_TRUST_HOST`: Set to `true` to allow authentication from your server's IP.
+- `NEXT_PUBLIC_APP_URL`: Set to `http://your-server-ip:3000`.
+- `DATABASE_URL`: Keep the default if using the included Postgres container.
 
-| Variable | Description |
-|----------|-------------|
-| `AUTH_SECRET` | Secret key for session encryption. Generate with `openssl rand -base64 32`. |
-| `ALLOW_REGISTRATION` | Set to `false` to disable public sign-ups (Private Mode). |
-| `INITIAL_USERS` | JSON array of users to be created on first start (useful for Private Mode). |
-| `DATABASE_URL` | Connection string for Postgres (pre-configured for Docker). |
+### 4. Start the application
+```bash
+docker compose up -d --build
+```
 
-## Persistence and Logs
+The application will be available at `http://your-server-ip:3000`.
 
-- **PostgreSQL Data**: Stored in a Docker volume named `postgres_data`.
-- **Image Uploads**: Stored in a Docker volume named `uploads_data`.
-- **View Logs**: `docker compose logs -f app`
-- **Stop App**: `docker compose down`
+## Management & Troubleshooting
 
-## Updating to New Version
+### View logs
+To see what's happening inside the application (migrations, user provisioning, errors):
+```bash
+docker compose logs -f app
+```
 
-To pull changes and rebuild the containers:
+### Common Issues
+
+#### 1. Authentication Error: "Host must be trusted"
+If you see an `UntrustedHost` error when logging in, ensure `AUTH_TRUST_HOST=true` is set in your `.env` and correctly passed in `docker-compose.yml`.
+
+#### 2. Permission Denied (EACCES) in Docker
+If the app fails to start with `EACCES: permission denied`, it's usually a Corepack/pnpm cache issue. Our Dockerfile is configured to use a non-root user with a home directory to avoid this. Ensure you are using the latest version of the Dockerfile.
+
+#### 3. Database Connection Issues
+Wait a few seconds for the database to become "healthy". The `app` service is configured to wait for the `db` healthcheck before starting.
+
+#### 4. Firewall (UFW)
+If you can't access the site, make sure the port is open:
+```bash
+ufw allow 3000/tcp
+```
+
+## Updates
+To update the application to the latest version:
 ```bash
 git pull
-docker compose build --no-cache
-docker compose up -d
+pnpm install
+docker compose up -d --build
 ```
