@@ -1,0 +1,18 @@
+{
+  "name": "@senlo/db",
+  "version": "0.0.1",
+  "main": "src/index.ts",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@senlo/core": "workspace:^",
+    "bcryptjs": "^3.0.2",
+    "drizzle-orm": "^0.45.0",
+    "pg": "^8.16.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/pg": "^8.15.6",
+    "drizzle-kit": "^0.31.8"
+  }
+}

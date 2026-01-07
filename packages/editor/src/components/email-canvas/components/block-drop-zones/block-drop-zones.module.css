@@ -1,0 +1,37 @@
+.dropZoneTop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  z-index: 1000;
+  pointer-events: auto;
+}
+
+.dropZoneBottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  z-index: 1000;
+  pointer-events: auto;
+}
+
+.indicatorTop {
+  position: absolute;
+  top: 0;
+  left: 8px;
+  right: 8px;
+  height: 2px;
+  pointer-events: none;
+}
+
+.indicatorBottom {
+  position: absolute;
+  bottom: 0;
+  left: 8px;
+  right: 8px;
+  height: 2px;
+  pointer-events: none;
+}

@@ -1,0 +1,40 @@
+.toggleGroup {
+  display: flex;
+  border: 1px solid var(--sl-color-border);
+  border-radius: var(--sl-radius-sm);
+  overflow: hidden;
+  width: fit-content;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: var(--sl-color-bg);
+  color: var(--sl-color-text-secondary);
+  border: none;
+  border-right: 1px solid var(--sl-color-border);
+  cursor: pointer;
+  transition: all var(--sl-transition-normal);
+}
+
+.button:last-child {
+  border-right: none;
+}
+
+.button:hover:not(.active) {
+  background-color: var(--sl-color-bg-muted);
+  color: var(--sl-color-text-primary);
+}
+
+.active {
+  background-color: var(--sl-color-primary);
+  color: var(--sl-color-primary-foreground);
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

@@ -1,0 +1,31 @@
+.canvas {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+  background-color: var(--sl-color-bg);
+  overflow: auto;
+  position: relative; /* Добавить для правильного z-index контекста */
+  z-index: 0; /* Явно указываем z-index */
+}
+
+.canvas.dragOver {
+  background-color: rgba(59, 130, 246, 0.05);
+}
+
+.email {
+  width: 100%;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 80px; /* Достаточно места для меню последнего блока */
+}
+
+.empty {
+  padding: 32px 24px;
+  font-size: 14px;
+  color: var(--sl-color-text-secondary);
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+}

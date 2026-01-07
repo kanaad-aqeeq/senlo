@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: ../..
+      dockerfile: deploy/vps/Dockerfile
+    container_name: senlo-app
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      - DATABASE_URL=postgresql://senlo_user:senlo_password@db:5432/senlo_db
+      - AUTH_SECRET=${AUTH_SECRET}
+      - NEXT_PUBLIC_APP_URL=${NEXT_PUBLIC_APP_URL:-http://localhost:3000}
+      - ALLOW_REGISTRATION=${ALLOW_REGISTRATION:-true}
+      - NEXT_PUBLIC_ALLOW_REGISTRATION=${ALLOW_REGISTRATION:-true}
+      - INITIAL_USERS=${INITIAL_USERS}
+    volumes:
+      - uploads_data:/app/apps/web/public/uploads
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: postgres:15-alpine
+    container_name: senlo-db
+    restart: always
+    environment:
+      - POSTGRES_USER=senlo_user
+      - POSTGRES_PASSWORD=senlo_password
+      - POSTGRES_DB=senlo_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U senlo_user -d senlo_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:
+  uploads_data:
+

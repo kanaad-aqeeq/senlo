@@ -1,0 +1,28 @@
+.menu {
+  position: absolute;
+  bottom: -36px;
+  left: 0;
+  z-index: 100;
+  pointer-events: auto;
+  display: flex;
+  gap: 4px;
+}
+
+.actionButton, .deleteButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: none;
+  border-radius: 4px;
+  background-color: var(--sl-color-primary);
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.actionButton:hover, .deleteButton:hover {
+  background-color: var(--sl-color-primary-hover);
+}

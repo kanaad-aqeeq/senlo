@@ -1,0 +1,50 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "jsx": "react-jsx",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "types": [
+      "react",
+      "react-dom"
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "@senlo/ui": [
+        "packages/ui/src"
+      ],
+      "@senlo/ui/*": [
+        "packages/ui/src/*"
+      ],
+      "@senlo/editor": [
+        "packages/editor/src"
+      ],
+      "@senlo/editor/*": [
+        "packages/editor/src/*"
+      ],
+      "@senlo/core": [
+        "packages/core/src"
+      ],
+      "@senlo/core/*": [
+        "packages/core/src/*"
+      ],
+      "@senlo/db": [
+        "packages/db/src"
+      ],
+      "@senlo/db/*": [
+        "packages/db/src/*"
+      ],
+      "@senlo/integrations": [
+        "packages/integrations/src"
+      ],
+      "@senlo/integrations/*": [
+        "packages/integrations/src/*"
+      ]
+    }
+  }
+}

@@ -1,0 +1,32 @@
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--sl-space-4);
+  margin-bottom: var(--sl-space-6);
+}
+
+.content {
+  flex: 1;
+  min-width: 0;
+}
+
+.title {
+  margin: 0;
+  font-size: var(--sl-font-size-xl);
+  font-weight: var(--sl-font-weight-bold);
+  color: var(--sl-color-text-primary);
+}
+
+.description {
+  margin: var(--sl-space-1) 0 0;
+  font-size: var(--sl-font-size-sm);
+  color: var(--sl-color-text-secondary);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--sl-space-2);
+  flex-shrink: 0;
+}

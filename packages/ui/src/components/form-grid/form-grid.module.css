@@ -1,0 +1,5 @@
+.formGrid {
+  display: grid;
+  gap: var(--sl-space-3);
+  grid-template-columns: repeat(var(--form-grid-cols, 1), minmax(0, 1fr));
+}

@@ -1,0 +1,17 @@
+.container {
+  border: 1px solid var(--sl-color-border);
+  border-radius: var(--sl-radius-sm);
+  overflow: hidden;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: var(--sl-font-size-sm);
+}
+
+/* Customizing CodeMirror internal elements */
+:global(.cm-editor) {
+  outline: none !important;
+}
+
+:global(.cm-gutters) {
+  background-color: var(--sl-color-bg-muted) !important;
+  border-right: 1px solid var(--sl-color-border) !important;
+}

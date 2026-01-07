@@ -1,0 +1,26 @@
+.formField {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sl-space-2);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sl-space-2);
+}
+
+.headerAction {
+  flex-shrink: 0;
+}
+
+.error {
+  font-size: var(--sl-font-size-xs);
+  color: var(--sl-color-destructive);
+}
+
+.hint {
+  font-size: var(--sl-font-size-xs);
+  color: var(--sl-color-text-secondary);
+}

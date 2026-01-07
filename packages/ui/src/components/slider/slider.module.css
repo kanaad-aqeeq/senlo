@@ -1,0 +1,121 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sl-space-2);
+  width: 100%;
+  margin-bottom: var(--sl-space-4);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.label {
+  font-size: var(--sl-font-size-xs);
+  font-weight: var(--sl-font-weight-medium);
+  color: var(--sl-color-text-secondary);
+}
+
+.inputWrapper {
+  display: flex;
+  align-items: center;
+  background: var(--sl-color-bg-muted);
+  border: 1px solid var(--sl-color-border);
+  border-radius: var(--sl-radius-sm);
+  padding: 2px var(--sl-space-1);
+  width: 60px;
+}
+
+.numberInput {
+  border: none;
+  background: transparent;
+  font-size: var(--sl-font-size-xs);
+  color: var(--sl-color-text-primary);
+  width: 100%;
+  outline: none;
+  text-align: right;
+  -moz-appearance: textfield;
+}
+
+.numberInput::-webkit-outer-spin-button,
+.numberInput::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.unit {
+  font-size: 11px;
+  color: var(--sl-color-text-placeholder);
+  margin-left: 2px;
+}
+
+/* Custom Range Input Styling */
+.rangeInput {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 20px;
+  background: transparent;
+  cursor: pointer;
+  margin: 0;
+}
+
+.rangeInput:focus {
+  outline: none;
+}
+
+/* Track - Webkit (Chrome, Safari, Edge) */
+.rangeInput::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 6px;
+  background: var(--sl-color-border);
+  border-radius: 3px;
+  border: 1px solid var(--sl-color-border);
+}
+
+/* Thumb - Webkit */
+.rangeInput::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 18px;
+  width: 18px;
+  border-radius: 50%;
+  background: var(--sl-color-bg);
+  border: 2px solid var(--sl-color-primary);
+  margin-top: -7px;
+  box-shadow: var(--sl-shadow-sm);
+  transition: transform var(--sl-transition-fast), box-shadow var(--sl-transition-fast);
+}
+
+.rangeInput:active::-webkit-slider-thumb {
+  transform: scale(1.1);
+  box-shadow: 0 0 0 5px rgba(37, 99, 235, 0.1);
+}
+
+/* Track - Firefox */
+.rangeInput::-moz-range-track {
+  width: 100%;
+  height: 6px;
+  background: var(--sl-color-border);
+  border-radius: 3px;
+  border: 1px solid var(--sl-color-border);
+}
+
+/* Thumb - Firefox */
+.rangeInput::-moz-range-thumb {
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background: var(--sl-color-bg);
+  border: 2px solid var(--sl-color-primary);
+  box-shadow: var(--sl-shadow-sm);
+  transition: transform var(--sl-transition-fast);
+}
+
+.rangeInput::-moz-range-progress {
+  background-color: var(--sl-color-primary);
+  height: 6px;
+  border-radius: 3px;
+}

@@ -1,0 +1,49 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 80vh;
+  gap: 1rem;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--sl-color-bg-hover);
+}
+
+.iframeWrapper {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  background-color: var(--sl-color-bg-muted);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  border: 1px solid var(--sl-color-border);
+}
+
+.iframe {
+  border: none;
+  background-color: var(--sl-color-bg);
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+}
+
+.desktop {
+  width: 100%;
+}
+
+.mobile {
+  width: 375px;
+}
+
+.dialogOverride {
+  max-width: 60rem !important;
+}
+
+
+
+
+
+
+
+

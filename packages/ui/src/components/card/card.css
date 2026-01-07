@@ -1,0 +1,8 @@
+/* ====== Card ====== */
+
+.sl-card {
+  border-radius: var(--sl-radius-lg);
+  border: 1px solid var(--sl-color-border);
+  background-color: var(--sl-color-bg);
+  padding: var(--sl-space-4);
+}

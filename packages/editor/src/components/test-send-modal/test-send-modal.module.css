@@ -1,0 +1,68 @@
+.container {
+  padding-top: 12px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.successState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 0;
+  text-align: center;
+  gap: 12px;
+}
+
+.successIcon {
+  color: var(--sl-color-success);
+}
+
+.successState h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--sl-color-text-primary);
+}
+
+.successState p {
+  margin: 0;
+  color: var(--sl-color-text-secondary);
+}
+
+.errorState {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px;
+  background-color: var(--sl-color-destructive-foreground);
+  border: 1px solid var(--sl-color-destructive-bg);
+  border-radius: 6px;
+  color: var(--sl-color-destructive-text);
+  font-size: 0.875rem;
+}
+
+.spinner {
+  animation: spin 1s linear infinite;
+  margin-right: 8px;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

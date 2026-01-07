@@ -1,0 +1,6 @@
+.label {
+  display: block;
+  font-size: var(--sl-font-size-sm);
+  font-weight: var(--sl-font-weight-medium);
+  color: var(--sl-color-text-secondary);
+}

@@ -1,0 +1,30 @@
+.senlo-editor-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.senlo-editor-root {
+  display: grid;
+  grid-template-columns: 20% minmax(0, 1fr) 20%;
+  flex: 1;
+  overflow: hidden;
+}
+
+.senlo-editor-sidebar,
+.senlo-editor-canvas,
+.senlo-editor-inspector {
+  border: 1px solid var(--sl-color-border);
+  background: var(--sl-color-bg);
+  overflow: auto;
+}
+
+.senlo-editor-sidebar,
+.senlo-editor-inspector {
+  border-color: transparent;
+}
+
+.senlo-editor-canvas {
+  background: var(--sl-color-bg-muted);
+}

@@ -1,0 +1,140 @@
+/**
+ * @senlo/ui Design Tokens
+ * 
+ * CSS Custom Properties for theming and consistency.
+ * Override these variables in your app to customize the look and feel.
+ */
+
+:root {
+  /* ============================================
+   * Colors - Primary
+   * ============================================ */
+  --sl-color-primary: #2563eb;
+  --sl-color-primary-hover: #1d4ed8;
+  --sl-color-primary-light: #3b82f6;
+  --sl-color-primary-foreground: #ffffff;
+
+  /* ============================================
+   * Colors - Backgrounds
+   * ============================================ */
+  --sl-color-bg: #ffffff;
+  --sl-color-bg-subtle: #fafafa;
+  --sl-color-bg-muted: #f9fafb;
+  --sl-color-bg-accent: #f4f4f5;
+  --sl-color-bg-hover: #f3f4f6;
+
+  /* ============================================
+   * Colors - Text
+   * ============================================ */
+  --sl-color-text: #09090b;
+  --sl-color-text-primary: #18181b;
+  --sl-color-text-secondary: #71717a;
+  --sl-color-text-muted: #a1a1aa;
+  --sl-color-text-placeholder: #9ca3af;
+
+  /* ============================================
+   * Colors - Border
+   * ============================================ */
+  --sl-color-border: #e4e4e7;
+  --sl-color-border-light: #e5e7eb;
+  --sl-color-border-focus: var(--sl-color-primary);
+
+  /* ============================================
+   * Colors - Semantic: Destructive
+   * ============================================ */
+  --sl-color-destructive: #ef4444;
+  --sl-color-destructive-hover: #dc2626;
+  --sl-color-destructive-foreground: #fef2f2;
+  --sl-color-destructive-bg: #fee2e2;
+  --sl-color-destructive-text: #991b1b;
+
+  /* ============================================
+   * Colors - Semantic: Success
+   * ============================================ */
+  --sl-color-success-bg: #dcfce7;
+  --sl-color-success-text: #166534;
+
+  /* ============================================
+   * Colors - Semantic: Warning
+   * ============================================ */
+  --sl-color-warning-bg: #fef9c3;
+  --sl-color-warning-text: #854d0e;
+
+  /* ============================================
+   * Typography
+   * ============================================ */
+  --sl-font-size-xs: 0.75rem;
+  --sl-font-size-sm: 0.875rem;
+  --sl-font-size-base: 1rem;
+  --sl-font-size-lg: 1.125rem;
+  --sl-font-size-xl: 1.25rem;
+
+  --sl-font-weight-normal: 400;
+  --sl-font-weight-medium: 500;
+  --sl-font-weight-semibold: 600;
+  --sl-font-weight-bold: 700;
+
+  --sl-line-height-tight: 1.25;
+  --sl-line-height-normal: 1.5;
+
+  /* ============================================
+   * Spacing
+   * ============================================ */
+  --sl-space-1: 0.25rem;
+  --sl-space-2: 0.5rem;
+  --sl-space-3: 0.75rem;
+  --sl-space-4: 1rem;
+  --sl-space-5: 1.25rem;
+  --sl-space-6: 1.5rem;
+  --sl-space-8: 2rem;
+
+  /* ============================================
+   * Border Radius
+   * ============================================ */
+  --sl-radius-sm: 0.375rem;
+  --sl-radius-md: 0.5rem;
+  --sl-radius-lg: 0.75rem;
+  --sl-radius-full: 9999px;
+
+  /* ============================================
+   * Shadows
+   * ============================================ */
+  --sl-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --sl-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --sl-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --sl-shadow-focus: 0 0 0 2px var(--sl-color-primary);
+
+  /* ============================================
+   * Transitions
+   * ============================================ */
+  --sl-transition-fast: 0.1s ease;
+  --sl-transition-normal: 0.15s ease;
+  --sl-transition-slow: 0.3s ease;
+
+  /* ============================================
+   * Z-Index
+   * ============================================ */
+  --sl-z-dropdown: 100;
+  --sl-z-modal: 200;
+  --sl-z-overlay: 150;
+
+  /* ============================================
+   * Legacy variable aliases (for backward compatibility)
+   * These map old --senlo-* variables to new --sl-* system
+   * ============================================ */
+  --senlo-primary-color: var(--sl-color-primary);
+  --senlo-border-color: var(--sl-color-border);
+  --senlo-text-primary: var(--sl-color-text-primary);
+  --senlo-text-secondary: var(--sl-color-text-secondary);
+  --senlo-error-color: var(--sl-color-destructive);
+}
+
+
+
+
+
+
+
+
+
+
