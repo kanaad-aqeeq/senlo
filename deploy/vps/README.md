@@ -44,6 +44,7 @@ Edit the `.env` file and set the following required values:
 - `AUTH_TRUST_HOST`: Set to `true` to allow authentication from your server's IP.
 - `NEXT_PUBLIC_APP_URL`: Set to `http://your-server-ip:3000`.
 - `DATABASE_URL`: Keep the default if using the included Postgres container.
+- `REDIS_URL`: Set to `redis://redis:6379` (standard for the included Redis container).
 
 ### 4. Advanced Configuration (Optional)
 Senlo provides several environment variables to control how the instance behaves:
@@ -70,10 +71,16 @@ The application will be available at `http://your-server-ip:3000`.
 ## Management & Troubleshooting
 
 ### View logs
-To see what's happening inside the application (migrations, user provisioning, errors):
-```bash
-docker compose logs -f app
-```
+To see what's happening inside the application, worker, or database:
+- **Main App**: `docker compose logs -f app`
+- **Email Worker**: `docker compose logs -f worker`
+- **Database**: `docker compose logs -f db`
+- **Redis**: `docker compose logs -f redis`
+
+### Monitoring Queues
+To check the status of the email queues on the server:
+1. Access Redis CLI: `docker exec -it senlo-redis redis-cli`
+2. Run `keys *` to see BullMQ keys or `ping` to check connection.
 
 ### Common Issues
 
