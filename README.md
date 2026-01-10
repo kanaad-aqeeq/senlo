@@ -101,3 +101,5 @@ The easiest way to deploy Senlo is using Docker Compose. Check our [VPS Deployme
 ## Status
 
 Senlo is currently in active development (MVP stage). We are stabilizing the API and adding core features. Contributions and feedback are welcome!
+
+Check out our [Roadmap](ROADMAP.md) for planned features and upcoming improvements.
