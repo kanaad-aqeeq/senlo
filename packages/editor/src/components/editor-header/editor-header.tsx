@@ -13,9 +13,10 @@ import { TestSendModal } from "../test-send-modal/test-send-modal";
 
 interface EditorHeaderProps {
   projectId: number;
+  variant?: "default" | "minimal";
 }
 
-export const EditorHeader = ({ projectId }: EditorHeaderProps) => {
+export const EditorHeader = ({ projectId, variant = "default" }: EditorHeaderProps) => {
   const undo = useEditorStore((s) => s.undo);
   const redo = useEditorStore((s) => s.redo);
   const design = useEditorStore((s) => s.design);
@@ -36,6 +37,8 @@ export const EditorHeader = ({ projectId }: EditorHeaderProps) => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const campaignId = searchParams.get("campaignId");
+
+  const isMinimal = variant === "minimal";
 
   const [isSaving, setIsSaving] = useState(false);
   const [isExportModalOpen, setIsExportModalOpen] = useState(false);
@@ -120,84 +123,90 @@ export const EditorHeader = ({ projectId }: EditorHeaderProps) => {
   return (
     <header className={styles.header}>
       <div className={styles.content}>
-        <button
-          className={styles.backButton}
-          onClick={handleBackClick}
-          title="Go back"
-        >
-          <ArrowLeft size={22} />
-        </button>
+        {!isMinimal && (
+          <button
+            className={styles.backButton}
+            onClick={handleBackClick}
+            title="Go back"
+          >
+            <ArrowLeft size={22} />
+          </button>
+        )}
 
         <h1 className={styles.title}>
           <strong>{templateName || "Untitled Template"}</strong>
         </h1>
 
         <div className={styles.actions}>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => setIsSettingsOpen(true)}
-            title="Template Settings"
-          >
-            <Settings2 size={16} />
-            <span>Info</span>
-          </Button>
+          {!isMinimal && (
+            <>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setIsSettingsOpen(true)}
+                title="Template Settings"
+              >
+                <Settings2 size={16} />
+                <span>Info</span>
+              </Button>
 
-          <div className={styles.separator} />
-          <button
-            className={styles.actionButton}
-            onClick={handleUndoClick}
-            disabled={!canUndo}
-            title="Undo"
-          >
-            <Undo2 size={22} />
-          </button>
-          <button
-            className={styles.actionButton}
-            onClick={handleRedoClick}
-            disabled={!canRedo}
-            title="Redo"
-          >
-            <Redo2 size={22} />
-          </button>
+              <div className={styles.separator} />
+              <button
+                className={styles.actionButton}
+                onClick={handleUndoClick}
+                disabled={!canUndo}
+                title="Undo"
+              >
+                <Undo2 size={22} />
+              </button>
+              <button
+                className={styles.actionButton}
+                onClick={handleRedoClick}
+                disabled={!canRedo}
+                title="Redo"
+              >
+                <Redo2 size={22} />
+              </button>
 
-          <Button
-            variant="primary"
-            size="sm"
-            onClick={handleSaveClick}
-            disabled={isSaving}
-          >
-            <Save size={16} />
-            <span>{isSaving ? "Saving..." : "Save"}</span>
-          </Button>
+              <Button
+                variant="primary"
+                size="sm"
+                onClick={handleSaveClick}
+                disabled={isSaving}
+              >
+                <Save size={16} />
+                <span>{isSaving ? "Saving..." : "Save"}</span>
+              </Button>
 
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => setIsPreviewOpen(true)}
-          >
-            <Eye size={16} />
-            <span>Preview</span>
-          </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setIsPreviewOpen(true)}
+              >
+                <Eye size={16} />
+                <span>Preview</span>
+              </Button>
 
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => setIsTestSendOpen(true)}
-            title="Send Test Email"
-          >
-            <Send size={16} />
-            <span>Test</span>
-          </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setIsTestSendOpen(true)}
+                title="Send Test Email"
+              >
+                <Send size={16} />
+                <span>Test</span>
+              </Button>
 
-          <Button
-            variant={previewMode ? "primary" : "outline"}
-            size="sm"
-            onClick={() => setPreviewMode(!previewMode)}
-          >
-            <Variable size={16} />
-            <span>{previewMode ? "Live Preview" : "Preview Tags"}</span>
-          </Button>
+              <Button
+                variant={previewMode ? "primary" : "outline"}
+                size="sm"
+                onClick={() => setPreviewMode(!previewMode)}
+              >
+                <Variable size={16} />
+                <span>{previewMode ? "Live Preview" : "Preview Tags"}</span>
+              </Button>
+            </>
+          )}
 
           <Button
             variant="outline"
@@ -215,56 +224,70 @@ export const EditorHeader = ({ projectId }: EditorHeaderProps) => {
         onClose={() => setIsExportModalOpen(false)}
       />
 
-      <PreviewModal
-        isOpen={isPreviewOpen}
-        onClose={() => setIsPreviewOpen(false)}
-      />
+      {!isMinimal && (
+        <>
+          <PreviewModal
+            isOpen={isPreviewOpen}
+            onClose={() => setIsPreviewOpen(false)}
+          />
 
-      <TestSendModal
-        isOpen={isTestSendOpen}
-        onClose={() => setIsTestSendOpen(false)}
-      />
+          <TestSendModal
+            isOpen={isTestSendOpen}
+            onClose={() => setIsTestSendOpen(false)}
+          />
+        </>
+      )}
 
-      <Dialog
-        isOpen={isSettingsOpen}
-        onClose={() => setIsSettingsOpen(false)}
-        title="Template Info"
-        description="Update the template name and email subject line."
-      >
-        <form onSubmit={handleSettingsSave} className="space-y-4">
-          <FormField label="Template Name" required hint="Internal name for this template">
-            <Input
-              value={editName}
-              onChange={(e) => setEditName(e.target.value)}
-              placeholder="e.g. Welcome Email"
+      {!isMinimal && (
+        <Dialog
+          isOpen={isSettingsOpen}
+          onClose={() => setIsSettingsOpen(false)}
+          title="Template Info"
+          description="Update the template name and email subject line."
+        >
+          <form onSubmit={handleSettingsSave} className="space-y-4">
+            <FormField
+              label="Template Name"
               required
-            />
-          </FormField>
-
-          <FormField label="Email Subject" required hint="The subject line recipients will see">
-            <Input
-              value={editSubject}
-              onChange={(e) => setEditSubject(e.target.value)}
-              placeholder="e.g. Welcome to our community!"
-              required
-            />
-          </FormField>
-
-          <div className="flex justify-end gap-3 mt-6">
-            <Button
-              variant="secondary"
-              type="button"
-              onClick={() => setIsSettingsOpen(false)}
-              disabled={isSaving}
+              hint="Internal name for this template"
             >
-              Cancel
-            </Button>
-            <Button type="submit" disabled={isSaving}>
-              {isSaving ? "Updating..." : "Update Info"}
-            </Button>
-          </div>
-        </form>
-      </Dialog>
+              <Input
+                value={editName}
+                onChange={(e) => setEditName(e.target.value)}
+                placeholder="e.g. Welcome Email"
+                required
+              />
+            </FormField>
+
+            <FormField
+              label="Email Subject"
+              required
+              hint="The subject line recipients will see"
+            >
+              <Input
+                value={editSubject}
+                onChange={(e) => setEditSubject(e.target.value)}
+                placeholder="e.g. Welcome to our community!"
+                required
+              />
+            </FormField>
+
+            <div className="flex justify-end gap-3 mt-6">
+              <Button
+                variant="secondary"
+                type="button"
+                onClick={() => setIsSettingsOpen(false)}
+                disabled={isSaving}
+              >
+                Cancel
+              </Button>
+              <Button type="submit" disabled={isSaving}>
+                {isSaving ? "Updating..." : "Update Info"}
+              </Button>
+            </div>
+          </form>
+        </Dialog>
+      )}
     </header>
   );
 };

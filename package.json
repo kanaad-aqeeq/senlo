@@ -8,11 +8,7 @@
   ],
   "scripts": {
     "dev": "pnpm --filter web dev",
-    "worker": "pnpm --filter web worker",
-    "build": "pnpm -r run build",
-    "db:push": "drizzle-kit push",
-    "db:studio": "drizzle-kit studio",
-    "db:provision": "tsx packages/db/src/provision.ts"
+    "build": "pnpm --filter web build"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.4",
@@ -22,12 +18,9 @@
     "zod": "^3.24.2"
   },
   "devDependencies": {
-    "@types/ioredis": "^5.0.0",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "drizzle-kit": "^0.31.8",
-    "tsx": "^4.21.0",
     "typescript": "^5"
   }
 }

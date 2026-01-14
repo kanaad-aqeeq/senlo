@@ -19,6 +19,7 @@ interface EditorLayoutProps {
   templateName: string;
   templateSubject: string;
   mergeTags?: MergeTag[];
+  headerVariant?: "default" | "minimal";
   onSave?: (
     id: number,
     design: EmailDesignDocument,
@@ -40,6 +41,7 @@ export const EditorLayout: FC<EditorLayoutProps> = ({
   templateName,
   templateSubject,
   mergeTags = [],
+  headerVariant = "default",
   onSave,
   onSendTest,
 }) => {
@@ -82,7 +84,7 @@ export const EditorLayout: FC<EditorLayoutProps> = ({
   if (!isMounted) {
     return (
       <div className="senlo-editor-container">
-        <EditorHeader projectId={projectId} />
+        <EditorHeader projectId={projectId} variant={headerVariant} />
         <div className="senlo-editor-root">
           <aside className="senlo-editor-sidebar">
             <Sidebar />

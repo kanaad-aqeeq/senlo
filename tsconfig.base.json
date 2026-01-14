@@ -32,18 +32,6 @@
       ],
       "@senlo/core/*": [
         "packages/core/src/*"
-      ],
-      "@senlo/db": [
-        "packages/db/src"
-      ],
-      "@senlo/db/*": [
-        "packages/db/src/*"
-      ],
-      "@senlo/integrations": [
-        "packages/integrations/src"
-      ],
-      "@senlo/integrations/*": [
-        "packages/integrations/src/*"
       ]
     }
   }
