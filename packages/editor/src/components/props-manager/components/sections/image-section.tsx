@@ -41,7 +41,7 @@ interface ImageSectionProps {
 }
 
 export const ImageSection = ({ block }: ImageSectionProps) => {
-  const { register, control, errors, setValue } = useBlockForm({
+  const { register, control, errors, setValue, getValues } = useBlockForm({
     block,
     schema: imageSchema,
   });
@@ -138,7 +138,27 @@ export const ImageSection = ({ block }: ImageSectionProps) => {
         </div>
       </FormField>
 
-      <FormField label="Link URL" error={errors.href?.message as string}>
+      <FormField
+        label="Link URL"
+        error={errors.href?.message as string}
+        headerAction={
+          <Button
+            type="button"
+            variant="ghost"
+            size="sm"
+            onClick={() => {
+              const href = getValues("href");
+              if (!href) {
+                alert("Enter a link URL first");
+                return;
+              }
+              setValue("src", href, { shouldValidate: true, shouldDirty: true });
+            }}
+          >
+            Use as Image
+          </Button>
+        }
+      >
         <Input {...register("href")} placeholder="https://example.com" />
       </FormField>
 

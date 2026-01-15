@@ -1,7 +1,7 @@
 "use client";
 
 import styles from "./editor-header.module.css";
-import { ArrowLeft, Undo2, Redo2, Download, Save, Eye, Settings2, Variable, Send } from "lucide-react";
+import { Undo2, Redo2, Download, Save, Eye, Settings2, Variable, Send } from "lucide-react";
 import { useEditorStore } from "../../state/editor.store";
 import { renderEmailDesign } from "@senlo/core";
 import { Button, Dialog, FormField, Input } from "@senlo/ui";
@@ -123,15 +123,7 @@ export const EditorHeader = ({ projectId, variant = "default" }: EditorHeaderPro
   return (
     <header className={styles.header}>
       <div className={styles.content}>
-        {!isMinimal && (
-          <button
-            className={styles.backButton}
-            onClick={handleBackClick}
-            title="Go back"
-          >
-            <ArrowLeft size={22} />
-          </button>
-        )}
+        {/* Back button removed */}
 
         <h1 className={styles.title}>
           <strong>{templateName || "Untitled Template"}</strong>
